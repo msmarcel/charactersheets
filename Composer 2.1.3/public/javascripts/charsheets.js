@@ -41,6 +41,28 @@ $(function() {
     return false;
   });
 
+  $("#include-pathfinder-society").change(function () {
+    if ($(this).is(":checked")) {
+      $("#include-background").prop('checked', true);
+    }
+  });
+
+  $("#simple").change(function () {
+    if ($(this).is(":checked")) {
+      $("#more").prop('checked', false);
+    }
+  });
+
+  $("#more").change(function () {
+    if ($(this).is(":checked")) {
+      $("#simple").prop('checked', false);
+    }
+  });
+
+  $("input[name=mini-size]").change(function () {
+
+  });
+
   $("a.lightbox").click(function () {
     var id = $(this).attr('rel');
     var lightbox = $(id);

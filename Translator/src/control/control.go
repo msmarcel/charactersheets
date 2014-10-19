@@ -39,6 +39,7 @@ type TemplateData struct {
 	CurrentGame        string
 	CurrentLevel       string
 	CurrentShow        string
+	CurrentSearch      string
 }
 
 type Pagination struct {
@@ -135,27 +136,21 @@ func GetTemplateData(r *http.Request, bodyClass string) TemplateData {
 	currentUser := GetCurrentUser(r)
 	recentUsers := GetRecentUsers()
 
-	if currentUser == nil {
-		return TemplateData{
-			BodyClass:        bodyClass,
-			IsAdmin:          false,
-			CurrentLanguage:  "gb",
-			Languages:        model.Languages,
-			DisplayLanguages: model.DisplayLanguages,
-			LanguageNames:    model.LanguageNames,
-			RecentUsers:      recentUsers,
-		}
-	}
-	return TemplateData{
+	templateData := TemplateData{
 		BodyClass:        bodyClass,
 		CurrentUser:      currentUser,
-		IsAdmin:          currentUser.IsAdmin,
-		CurrentLanguage:  currentUser.Language,
+		IsAdmin:          false,
+		CurrentLanguage:  "gb",
 		Languages:        model.Languages,
 		DisplayLanguages: model.DisplayLanguages,
 		LanguageNames:    model.LanguageNames,
 		RecentUsers:      recentUsers,
 	}
+	if currentUser != nil {
+		templateData.IsAdmin = currentUser.IsAdmin
+		templateData.CurrentLanguage = currentUser.Language
+	}
+	return templateData
 }
 
 func DurString(dur time.Duration) string {
@@ -193,39 +188,73 @@ func md5sum(email string) string {
 	return hex.EncodeToString(hasher.Sum(nil))
 }
 
-func myTranslation(entry *model.StackedEntry, language string, me *model.User) *model.StackedTranslation {
-	translation := entry.GetTranslationBy(language, me.Email)
-	if translation == nil {
-		parts := make([]*model.Translation, len(entry.Entries))
-		for i, e := range entry.Entries {
-			parts[i] = &model.Translation{
-				Entry:       *e,
-				Language:    language,
-				Translation: "",
-				Translator:  me.Email,
-			}
-		}
-		st := model.StackedTranslation{
-			Entry:      entry,
-			Language:   language,
-			Translator: me.Email,
-			Parts:      parts,
-			Count:      len(parts),
-		}
-		return &st
-	}
-	return translation
+type TranslationSet struct {
+	Entry        *model.StackedEntry
+	Others       []*model.StackedTranslation
+	Mine         *model.StackedTranslation
+	Language     string
+	Count        int
+	IsVotable    bool
+	Untranslated bool
 }
 
-func otherTranslations(entry *model.StackedEntry, language string, me *model.User) []*model.StackedTranslation {
+func getTranslationSet(entry *model.StackedEntry, language string, me *model.User) *TranslationSet {
 	translations := entry.GetTranslations(language)
-	otherTranslations := make([]*model.StackedTranslation, 0, len(translations))
+
+	others := make([]*model.StackedTranslation, 0, len(translations))
+	var mine *model.StackedTranslation = nil
+
 	for _, translation := range translations {
-		if translation != nil && translation.Translator != me.Email {
-			otherTranslations = append(otherTranslations, translation)
+		if translation != nil {
+			if translation.Translator == me.Email {
+				mine = translation
+			} else {
+				others = append(others, translation)
+			}
 		}
 	}
-	return otherTranslations
+	count := len(others)
+	if mine != nil {
+		count++
+	}
+
+	return &TranslationSet{
+		Entry:        entry,
+		Others:       others,
+		Mine:         mine,
+		Language:     language,
+		Count:        count,
+		IsVotable:    count > 1,
+		Untranslated: mine == nil,
+	}
+}
+
+func myTranslation(set *TranslationSet) *model.StackedTranslation {
+	if set == nil || set.Mine == nil {
+		// fmt.Printf("%#v", set.Entry)
+		parts := make([]*model.Translation, len(set.Entry.Entries))
+		for i, _ := range parts {
+			e := set.Entry.Entries[i]
+			if e == nil {
+				e = &model.Entry{set.Entry.FullText, ""}
+			}
+			parts[i] = &model.Translation{
+				Entry:       *e,
+				Language:    set.Language,
+				Translation: "",
+				Translator:  "",
+			}
+		}
+		return &model.StackedTranslation{
+			Entry: set.Entry,
+			Parts: parts,
+		}
+	}
+	return set.Mine
+}
+
+func otherTranslations(set *TranslationSet) []*model.StackedTranslation {
+	return set.Others
 }
 
 func countUserTranslations(user *model.User) map[string]int {
@@ -249,7 +278,7 @@ func entryClass(entry *model.StackedEntry, language string, me *model.User) stri
 	}
 	for _, translation := range translations {
 		if translation.Translator == me.Email {
-			classes = append(classes, "my-translation")
+			classes = append(classes, "with-translation")
 		}
 	}
 
@@ -266,22 +295,29 @@ func paginateTemplate(page *Pagination) template.HTML {
 	}
 
 	format := "<a href='%spage=%d' class='btn btn-default'>%s</a>"
+	disabled := "<span class='btn btn-default' disabled='disabled'>%s</span>"
 
-	first := ""
-	back := ""
+	first := "<span class='glyphicon glyphicon-chevron-left'></span> First"
+	back := "<span class='glyphicon glyphicon-chevron-left'></span> Back"
 	if page.Page > 1 {
-		first = fmt.Sprintf(format, url, 1, "<span class='glyphicon glyphicon-arrow-left'></span> First")
-		back = fmt.Sprintf(format, url, page.PrevPage, "<span class='glyphicon glyphicon-arrow-left'></span> Back")
+		first = fmt.Sprintf(format, url, 1, first)
+		back = fmt.Sprintf(format, url, page.PrevPage, back)
+	} else {
+		first = fmt.Sprintf(disabled, first)
+		back = fmt.Sprintf(disabled, back)
 	}
 
-	next := ""
-	last := ""
+	next := "Next <span class='glyphicon glyphicon-chevron-right'></span>"
+	last := "Last <span class='glyphicon glyphicon-chevron-right'></span>"
 	if page.Page < page.LastPage {
-		next = fmt.Sprintf(format, url, page.NextPage, "Next <span class='glyphicon glyphicon-arrow-right'></span>")
-		last = fmt.Sprintf(format, url, page.LastPage, "Last <span class='glyphicon glyphicon-arrow-right'></span>")
+		next = fmt.Sprintf(format, url, page.NextPage, next)
+		last = fmt.Sprintf(format, url, page.LastPage, last)
+	} else {
+		next = fmt.Sprintf(disabled, next)
+		last = fmt.Sprintf(disabled, last)
 	}
 
-	return template.HTML("<span class='pagination'>" + first + back + next + last + "</span>")
+	return template.HTML("<span class='pagination btn-group'>" + first + back + next + last + "</span>")
 }
 
 func sourcePath(source *model.Source) template.HTML {
@@ -328,9 +364,32 @@ func sourceCompletion(source *model.Source) map[string]int {
 	return source.GetLanguageCompletion()
 }
 
+func isVotedUp(translation *model.StackedTranslation, voter *model.User) bool {
+	votes := translation.GetVotes()
+	for _, vote := range votes {
+		fmt.Println("Vote by", vote.Voter.Email, "=", vote.Vote)
+		if vote.Voter.Email == voter.Email {
+			return vote.Vote
+		}
+	}
+	return false
+}
+
+func isVotedDown(translation *model.StackedTranslation, voter *model.User) bool {
+	votes := translation.GetVotes()
+	for _, vote := range votes {
+		fmt.Println("Vote by", vote.Voter.Email, "=", vote.Vote)
+		if vote.Voter.Email == voter.Email {
+			return !vote.Vote
+		}
+	}
+	return false
+}
+
 var templateFuncs = template.FuncMap{
 	"percentColour":          percentColour,
 	"md5":                    md5sum,
+	"getTranslationSet":      getTranslationSet,
 	"otherTranslations":      otherTranslations,
 	"myTranslation":          myTranslation,
 	"countUserTranslations":  countUserTranslations,
@@ -343,6 +402,8 @@ var templateFuncs = template.FuncMap{
 	"sourceCompletion":       sourceCompletion,
 	"previewURL":             previewURL,
 	"previewExists":          previewExists,
+	"isVotedUp":              isVotedUp,
+	"isVotedDown":            isVotedDown,
 }
 
 func renderTemplate(name string, w http.ResponseWriter, r *http.Request, dataproc func(data TemplateData) TemplateData) {

@@ -40,6 +40,7 @@
             { "file": "Archetypes/Bard/Daredevil.pdf", "slot": "bard", "variant": "daredevil", "name": "Daredevil" },
             { "file": "Archetypes/Bard/Demagogue.pdf", "slot": "bard", "variant": "demagogue", "name": "Demagogue" },
             { "file": "Archetypes/Bard/Dervish Dancer.pdf", "slot": "bard", "variant": "dervishdancer", "name": "Dervish Dancer" },
+            { "file": "Archetypes/Bard/Dervish of Dawn.pdf", "slot": "bard", "variant": "dervishofdawn", "name": "Dervish of Dawn" },
             { "file": "Archetypes/Bard/Detective.pdf", "slot": "bard", "variant": "detective", "name": "Detective" },
             { "file": "Archetypes/Bard/Dirge Bard.pdf", "slot": "bard", "variant": "dirge", "name": "Archaeologist" },
             { "file": "Archetypes/Bard/Geisha.pdf", "slot": "bard", "variant": "geisha", "name": "Geisha" },
@@ -96,6 +97,7 @@
             { "file": "Archetypes/Druid/Urban Druid.pdf", "slot": "druid", "variant": "urban", "name": "Urban Druid" },
             { "file": "Archetypes/Druid/World Walker (Animal Companion).pdf", "slot": "druid", "variant": "worldwalker/animalcompanion", "name": "World Walker (Animal Companion)" },
             { "file": "Archetypes/Druid/World Walker (Domain).pdf", "slot": "druid", "variant": "worldwalker/domain", "name": "World Walker (Domain)" },
+                { "file": "Archetypes/Druid/World Walker - Character Info.pdf", "slot": "core", "variant": "worldwalker", "name": "Character Info" },
 
         { "file": "Core/Fighter.pdf", "slot": "fighter", "name": "Fighter" },
 
@@ -115,12 +117,35 @@
             { "file": "Archetypes/Monk/Monk of the Sacred Mountain.pdf", "slot": "monk", "variant": "sacredmountain", "name": "Monk of the Lotus" },
             { "file": "Archetypes/Monk/Sensei.pdf", "slot": "monk", "variant": "sensei", "name": "Sensei" },
             { "file": "Archetypes/Monk/Sohei.pdf", "slot": "monk", "variant": "sohei", "name": "Sohei" },
+            { "file": "Archetypes/Monk/Tetori.pdf", "slot": "monk", "variant": "tetori", "name": "Tetori" },
             { "file": "Archetypes/Monk/Weapon Adept.pdf", "slot": "monk", "variant": "weaponadept", "name": "Weapon Adept" },
             { "file": "Archetypes/Monk/Zen Archer.pdf", "slot": "monk", "variant": "zenarcher", "name": "Zen Archer" },
 
         { "file": "Core/Paladin.pdf", "slot": "paladin", "name": "Paladin" },
           { "file": "Core/Paladin.pdf", "slot": "paladin", "variant": "paladin", "name": "Paladin" },
+            { "file": "Archetypes/Paladin/Divine Defender.pdf", "slot": "paladin", "variant": "divinedefender", "name": "Divine Defender" },
+            { "file": "Archetypes/Paladin/Divine Hunter.pdf", "slot": "paladin", "variant": "divinehunter", "name": "Divine Hunter" },
+            { "file": "Archetypes/Paladin/Empyreal Knight.pdf", "slot": "paladin", "variant": "empyrealknight", "name": "Empyreal Knight" },
+            { "file": "Archetypes/Paladin/Holy Gun.pdf", "slot": "paladin", "variant": "holygun", "name": "Holy Gun" },
+            { "file": "Archetypes/Paladin/Holy Tactician.pdf", "slot": "paladin", "variant": "holytactician", "name": "Holy Tactician" },
+            { "file": "Archetypes/Paladin/Hospitaler.pdf", "slot": "paladin", "variant": "hospitaler", "name": "Hospitaler" },
+            { "file": "Archetypes/Paladin/Sacred Servant.pdf", "slot": "paladin", "variant": "sacredservant", "name": "Sacred Servant" },
+            { "file": "Archetypes/Paladin/Sacred Shield.pdf", "slot": "paladin", "variant": "sacredshield", "name": "Sacred Shield" },
+            { "file": "Archetypes/Paladin/Shining Knight.pdf", "slot": "paladin", "variant": "shiningknight", "name": "Shining Knight" },
+            { "file": "Archetypes/Paladin/Undead Scourge.pdf", "slot": "paladin", "variant": "undeadscourge", "name": "Undead Scourge" },
+            { "file": "Archetypes/Paladin/Warrior of the Holy Light.pdf", "slot": "paladin", "variant": "warrioroftheholylight", "name": "Warrior of the Holy Light" },
           { "file": "Archetypes/Paladin/Antipaladin.pdf", "slot": "paladin", "variant": "antipaladin", "name": "Antipaladin" },
+            { "file": "Archetypes/Paladin/Knight of the Sepulcher.pdf", "slot": "paladin", "variant": "knightofthesepulcher", "name": "Knight of the Sepulcher" },
+          { "file": "Archetypes/Paladin/Oathbound/Oathbound Paladin.pdf", "slot": "paladin", "variant": "oathbound", "name": "Oathbound Paladin" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath against Corruption.pdf", "slot": "paladin", "variant": "oathagainstcorruption", "name": "Oath against Corruption" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath against Fiends.pdf", "slot": "paladin", "variant": "oathagainstfiends", "name": "Oath against Fiends" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath against Savagery.pdf", "slot": "paladin", "variant": "oathagainstsavagery", "name": "Oath against Savagery" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath against the Wyrm.pdf", "slot": "paladin", "variant": "oathagainstthewyrm", "name": "Oath against Wyrm" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath against Undeath.pdf", "slot": "paladin", "variant": "oathagainstundeath", "name": "Oath against Undeath" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath of Charity.pdf", "slot": "paladin", "variant": "oathofcharity", "name": "Oath of Charity" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath of Chastity.pdf", "slot": "paladin", "variant": "oathofchastity", "name": "Oath of Chastity" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath of Loyalty.pdf", "slot": "paladin", "variant": "oathofloyalty", "name": "Oath of Loyalty" },
+            { "file": "Archetypes/Paladin/Oathbound/Oath of Vengeance.pdf", "slot": "paladin", "variant": "oathofvengeance", "name": "Oath of Vengeance" },
 
         { "file": "Core/Ranger/Ranger - Character Info.pdf", "slot": "core", "variant": "ranger", "name": "Ranger", "position": 10 },
           { "file": "Core/Ranger/Ranger - Combat.pdf", "slot": "combat", "variant": "ranger", "name": "Ranger", "position": 11 },
@@ -143,8 +168,14 @@
 
         { "file": "Core/Rogue.pdf", "slot": "rogue", "name": "Rogue" },
             { "file": "Archetypes/Rogue/Scout.pdf", "slot": "rogue", "variant": "scout", "name": "Scout" },
+
         { "file": "Core/Sorcerer.pdf", "slot": "sorcerer", "name": "Sorcerer" },
             { "file": "Archetypes/Sorcerer/Crossblooded Sorcerer.pdf", "slot": "sorcerer", "variant": "crossblooded", "name": "Crossblooded Sorcerer" },
+            { "file": "Archetypes/Sorcerer/False Priest.pdf", "slot": "sorcerer", "variant": "falsepriest", "name": "False Priest" },
+            { "file": "Archetypes/Sorcerer/Seeker.pdf", "slot": "sorcerer", "variant": "seeker", "name": "Seeker" },
+            { "file": "Archetypes/Sorcerer/Tattooed Sorcerer.pdf", "slot": "sorcerer", "variant": "tattooed", "name": "Tattooed Sorcerer" },
+            { "file": "Archetypes/Sorcerer/Wildblooded.pdf", "slot": "sorcerer", "variant": "wildblooded", "name": "Wildblooded Sorcerer" },
+
         { "file": "Core/Wizard.pdf", "slot": "wizard", "name": "Wizard" },
 
         { "file": "Advanced/Alchemist.pdf", "slot": "alchemist", "name": "Alchemist`" },
@@ -164,6 +195,15 @@
         { "file": "Ultimate Combat/Ronin.pdf", "slot": "samurai", "variant": "ronin", "name": "Samurai" },
 
         { "file": "Advanced Class Guide/Arcanist.pdf", "slot": "arcanist", "name": "Arcanist" },
+        { "file": "Advanced Class Guide/Bloodrager.pdf", "slot": "bloodrager", "name": "Bloodrager" },
+        { "file": "Advanced Class Guide/Brawler.pdf", "slot": "brawler", "name": "Brawler" },
+        { "file": "Advanced Class Guide/Hunter.pdf", "slot": "hunter", "name": "Hunter" },
+        { "file": "Advanced Class Guide/Investigator.pdf", "slot": "investigator", "name": "Investigator" },
+        { "file": "Advanced Class Guide/Shaman.pdf", "slot": "shaman", "name": "Shaman" },
+        { "file": "Advanced Class Guide/Skald.pdf", "slot": "skald", "name": "Skald" },
+        { "file": "Advanced Class Guide/Slayer.pdf", "slot": "slayer", "name": "Slayer" },
+        { "file": "Advanced Class Guide/Swashbuckler.pdf", "slot": "swashbuckler", "name": "Swashbuckler" },
+        { "file": "Advanced Class Guide/Warpriest.pdf", "slot": "warpriest", "name": "Warpriest" },
 		
 		
         { "file": "Psionics/Psionics - Character Info.pdf", "slot": "core", "variant": "psionic", "name": "Character Info (Psionic)", "position": 10 },
@@ -204,6 +244,7 @@
         { "file": "NeoExodus/Prestige Classes/Wyrdcaster.pdf", "slot": "wyrdcaster", "name": "Wyrdcaster" },
 
         { "file": "Extra/Character Background.pdf", "slot": "background", "name": "Character Background" },
+        { "file": "Extra/Character Background - Pathfinder Society.pdf", "slot": "background", "variant": "pathfindersociety", "name": "Character Background (Pathfinder Society)" },
         { "file": "Extra/Lycanthrope.pdf", "slot": "lycanthrope", "name": "Lycanthrope" },
         { "file": "Core/Party Funds.pdf", "slot": "partyfunds", "name": "Party Funds" },
         
@@ -214,6 +255,10 @@
         { "file": "Extra/Spell Book.pdf", "slot": "spellbook", "name": "Spellbook" },
         { "file": "Extra/Spell Book (Large).pdf", "slot": "spellbook", "variant": "large", "name": "Large" },
         { "file": "Extra/Spell Book (Dense).pdf", "slot": "spellbook", "variant": "small", "name": "Small" },
+
+        { "file": "Extra/Mini (Small).pdf", "slot": "mini", "variant": "small", "name": "Mini (Small)" },
+        { "file": "Extra/Mini (Medium).pdf", "slot": "mini", "variant": "medium", "name": "Mini (Medium)" },
+        { "file": "Extra/Mini (Large).pdf", "slot": "mini", "variant": "large", "name": "Mini (Large)" },
 
         { "file": "Core/Animal Companion.pdf", "slot": "animalcompanion", "name": "Animal Companion" }
     ],
@@ -264,15 +309,17 @@
     },
 
     "layout": [
-        [ "Core Rulebook" ],
-        [ "Advanced Player's Guide", "Ultimate Magic", "Ultimate Combat", "Mythic Adventures", "Tome of Secrets" ],
+        [ "Core Rulebook", "Advanced Player's Guide" ],
+        [ "Ultimate Magic", "Ultimate Combat", "Advanced Class Guide", "Mythic Adventures", "Tome of Secrets" ],
         [ "Psionics Unleashed", "Psionics Expanded", "NeoExodus", "Generic" ]
     ],
 
     "languages": [
-        { "code": "english", "name": "English", "ready": [1, 1, 1, 1] },
-        { "code": "italian", "name": "Italiano", "ready": [0.75, 0.5, 0.25, 0] },
-        { "code": "american", "name": "US English", "ready": [1, 1, 1, 1] }
+        { "code": "english",  "short": "gb", "name": "English",     "ready": [1, 1, 1, 1] },
+        { "code": "italian",  "short": "it", "name": "Italiano",    "ready": [0.75, 0.5, 0.25, 0.3] },
+        { "code": "spanish",  "short": "es", "name": "Español",     "ready": [0.9, 0.35, 0.4, 0.4] },
+        { "code": "polish",   "short": "pl", "name": "Polski",      "ready": [0.8, 0.2, 0.25, 0.3] },
+        { "code": "american", "short": "us", "name": "US English",  "ready": [1, 1, 1, 1] }
     ],
 
     "books": [
@@ -303,7 +350,7 @@
 
         {
             "name": "Advanced Class Guide",
-            "classes": [ "Arcanist" ]
+            "classes": [ "Arcanist", "Bloodrager", "Brawler", "Hunter", "Investigator", "Shaman", "Skald", "Slayer", "Swashbuckler", "Warpriest" ]
         },
 
         {
@@ -376,6 +423,7 @@
                 { "name": "Daredevil", "pages": [ "bard/daredevil" ] },
                 { "name": "Demagogue", "pages": [ "bard/demagogue" ] },
                 { "name": "Dervish Dancer", "pages": [ "bard/dervishdancer" ] },
+                { "name": "Dervish of Dawn", "pages": [ "bard/dervishofdawn" ] },
                 { "name": "Detective", "pages": [ "bard/detective" ] },
                 { "name": "Dirge Bard", "pages": [ "bard/dirge" ] },
                 { "name": "Geisha", "pages": [ "bard/geisha" ] },
@@ -410,7 +458,7 @@
             "name": "Druid",
             "pages": [ "druid", "inventory/without", "wildshape", "spellbook" ],
             "axes": [
-                ["Druid", "Shaman", "Menhir Savant", "Mooncaller", "Pack Lord", "Reincarnated", "Aquatic", "Arctic", "Blight", "Cave", "Desert", "Jungle", "Mountain", "Plains", "Swamp", "Storm", "Urban"],
+                ["Druid", "Shaman", "Menhir Savant", "Mooncaller", "Pack Lord", "Reincarnated", "Aquatic", "Arctic", "Blight", "Cave", "Desert", "Jungle", "Mountain", "Plains", "Swamp", "Storm", "Urban", "World Walker"],
                 ["Animal Companion", "Domain"]
             ],
             "variants": [
@@ -460,7 +508,7 @@
             "pages": [ "combat/monk", "monk", "inventory" ],
             "variants": [
                 { "name": "Monk", "pages": [ ] },
-                { "name": "Drunken Monk", "pages": [ "monk/drunken" ] },
+                { "name": "Drunken Master", "pages": [ "monk/drunkenmaster" ] },
                 { "name": "Flowing Monk", "pages": [ "monk/flowing" ] },
                 { "name": "Hungry Ghost Monk", "pages": [ "monk/hungryghost" ] },
                 { "name": "Ki Mystic", "pages": [ "monk/kimystic" ] },
@@ -474,6 +522,7 @@
                 { "name": "Monk of the Sacred Mountain", "pages": [ "monk/sacredmountain" ] },
                 { "name": "Sensei", "pages": [ "monk/sensei" ] },
                 { "name": "Sohei", "pages": [ "monk/sohei" ] },
+                { "name": "Tetori", "pages": [ "monk/tetori" ] },
                 { "name": "Weapon Adept", "pages": [ "monk/weaponadept" ] },
                 { "name": "Zen Archer", "pages": [ "monk/zenarcher" ] }
             ]
@@ -484,7 +533,30 @@
             "pages": [ "paladin", "inventory/without", "spellbook" ],
             "variants": [
                 { "name": "Paladin", "pages": [ ] },
-                { "name": "Antipaladin", "pages": [ "paladin/antipaladin" ] }
+                { "name": "Antipaladin", "pages": [ "paladin/antipaladin" ] },
+                { "name": "Divine Defender", "pages": [ "paladin/divinedefender" ] },
+                { "name": "Divine Hunter", "pages": [ "paladin/divinehunter" ] },
+                { "name": "Emyreal Knight", "pages": [ "paladin/empyrealknight" ] },
+                { "name": "Holy Gun", "pages": [ "paladin/holygun" ] },
+                { "name": "Holy Tactician", "pages": [ "paladin/holytactician" ] },
+                { "name": "Hospitaler", "pages": [ "paladin/hospitaler" ] },
+                { "name": "Knight of the Sepulcher", "pages": [ "paladin/knightofthesepulcher" ] },
+                { "name": "Sacred Servant", "pages": [ "paladin/sacredservant" ] },
+                { "name": "Sacred Shield", "pages": [ "paladin/sacredshield" ] },
+                { "name": "Shining Knight", "pages": [ "paladin/shiningknight" ] },
+                { "name": "Undead Scourge", "pages": [ "paladin/undeadscourge" ] },
+                { "name": "Warrior of the Holy Light", "pages": [ "paladin/warrioroftheholylight" ] },
+
+                { "name": "Oathbound Paladin", "pages": [ "paladin/oathbound" ] },
+                    { "name": "Oath against Corruption", "pages": [ "paladin/oathagainstcorruption" ] },
+                    { "name": "Oath against Fiends", "pages": [ "paladin/oathagainstfiends" ] },
+                    { "name": "Oath against Savagery", "pages": [ "paladin/oathagainstsavagery" ] },
+                    { "name": "Oath against the Wyrm", "pages": [ "paladin/oathagainstthewyrm" ] },
+                    { "name": "Oath against Undeath", "pages": [ "paladin/oathagainstundeath" ] },
+                    { "name": "Oath of Charity", "pages": [ "paladin/oathofcharity" ] },
+                    { "name": "Oath of Chastity", "pages": [ "paladin/oathofchastity" ] },
+                    { "name": "Oath of Loyalty", "pages": [ "paladin/oathofloyalty" ] },
+                    { "name": "Oath of Vengeance", "pages": [ "paladin/oathofvengeance" ] }
             ]
         },
 
@@ -525,7 +597,11 @@
             "pages": [ "sorcerer", "inventory/without", "spellbook", "animalcompanion" ],
             "variants": [
                 { "name": "Sorcerer", "pages": [ ] },
-                { "name": "Crossblooded Sorcerer", "pages": [ "sorcerer/crossblooded" ] }
+                { "name": "Crossblooded Sorcerer", "pages": [ "sorcerer/crossblooded" ] },
+                { "name": "False Priest", "pages": [ "sorcerer/falsepriest" ] },
+                { "name": "Seeker", "pages": [ "sorcerer/seeker" ] },
+                { "name": "Tattooed Sorcerer", "pages": [ "sorcerer/tattooed" ] },
+                { "name": "Wildblooded Sorcerer", "pages": [ "sorcerer/wildblooded" ] }
             ]
         },
 
@@ -582,6 +658,51 @@
         {
             "name": "Arcanist",
             "pages": [ "arcanist", "inventory", "spellbook" ]
+        },
+
+        {
+            "name": "Bloodrager",
+            "pages": [ "core/barbarian", "combat/barbarian", "bloodrager", "inventory", "spellbook" ]
+        },
+
+        {
+            "name": "Brawler",
+            "pages": [ "brawler", "inventory" ]
+        },
+
+        {
+            "name": "Hunter",
+            "pages": [ "hunter", "inventory" ]
+        },
+
+        {
+            "name": "Investigator",
+            "pages": [ "investigator", "inventory" ]
+        },
+
+        {
+            "name": "Shaman",
+            "pages": [ "shaman", "inventory", "spellbook" ]
+        },
+
+        {
+            "name": "Skald",
+            "pages": [ "skald", "inventory" ]
+        },
+
+        {
+            "name": "Slayer",
+            "pages": [ "slayer", "inventory" ]
+        },
+
+        {
+            "name": "Swashbuckler",
+            "pages": [ "swashbuckler", "inventory" ]
+        },
+
+        {
+            "name": "Warpriest",
+            "pages": [ "warpriest", "inventory", "spellbook" ]
         },
 
         {

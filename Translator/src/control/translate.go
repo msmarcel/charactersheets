@@ -9,14 +9,14 @@ import (
 	// "math/rand"
 	"encoding/csv"
 	// "io"
+	"bufio"
 	"fmt"
+	"mime/multipart"
 	"net/http"
 	"path"
 	"strconv"
 	"strings"
 	"time"
-	"bufio"
-	"mime/multipart"
 )
 
 const (
@@ -28,6 +28,7 @@ func SourcesHandler(w http.ResponseWriter, r *http.Request) {
 		data.CurrentGame = r.FormValue("game")
 		data.CurrentLevel = r.FormValue("level")
 		data.CurrentShow = r.FormValue("show")
+		data.CurrentSearch = r.FormValue("search")
 
 		leveln, err := strconv.Atoi(data.CurrentLevel)
 		if err != nil || leveln > 4 || leveln < 1 {
@@ -43,12 +44,14 @@ func SourcesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func EntriesHandler(w http.ResponseWriter, r *http.Request) {
+	currentUser := GetCurrentUser(r)
 	renderTemplate("entries", w, r, func(data TemplateData) TemplateData {
 		data.CurrentGame = r.FormValue("game")
 		data.CurrentLevel = r.FormValue("level")
 		data.CurrentShow = r.FormValue("show")
+		data.CurrentSearch = r.FormValue("search")
 
-		data.Entries = model.GetStackedEntries(data.CurrentGame, data.CurrentLevel, data.CurrentShow, "gb")
+		data.Entries = model.GetStackedEntries(data.CurrentGame, data.CurrentLevel, data.CurrentShow, data.CurrentSearch, "gb", currentUser)
 		data.Page = Paginate(r, PageSize, len(data.Entries))
 		data.Entries = data.Entries[data.Page.Offset:data.Page.Slice]
 		return data
@@ -56,6 +59,7 @@ func EntriesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func TranslationHandler(w http.ResponseWriter, r *http.Request) {
+	currentUser := GetCurrentUser(r)
 	renderTemplate("translate", w, r, func(data TemplateData) TemplateData {
 		rlang := r.FormValue("language")
 		if rlang != "" {
@@ -65,8 +69,12 @@ func TranslationHandler(w http.ResponseWriter, r *http.Request) {
 		data.CurrentGame = r.FormValue("game")
 		data.CurrentLevel = r.FormValue("level")
 		data.CurrentShow = r.FormValue("show")
+		data.CurrentSearch = r.FormValue("search")
+		if data.CurrentSearch != "" {
+			fmt.Println("Searching for:", data.CurrentSearch)
+		}
+		data.Entries = model.GetStackedEntries(data.CurrentGame, data.CurrentLevel, data.CurrentShow, data.CurrentSearch, data.CurrentLanguage, currentUser)
 
-		data.Entries = model.GetStackedEntries(data.CurrentGame, data.CurrentLevel, data.CurrentShow, data.CurrentLanguage)
 		data.Page = Paginate(r, PageSize, len(data.Entries))
 		data.Entries = data.Entries[data.Page.Offset:data.Page.Slice]
 		return data
@@ -208,11 +216,13 @@ func ExportHandler(w http.ResponseWriter, r *http.Request) {
 			"Translation",
 		})
 		for _, translation := range translations {
-			out.Write([]string{
-				translation.Entry.Original,
-				translation.Entry.PartOf,
-				translation.Translation,
-			})
+			for _, part := range translation.Parts {
+				out.Write([]string{
+					part.Entry.Original,
+					part.Entry.PartOf,
+					part.Translation,
+				})
+			}
 		}
 		out.Flush()
 		return
@@ -246,7 +256,7 @@ func stripBOM(file multipart.File) *bufio.Reader {
 	br := bufio.NewReader(file)
 	rune, _, _ := br.ReadRune()
 	if rune != '\uFEFF' {
-        br.UnreadRune() // Not a BOM -- put the rune back
-    }
-    return br
+		br.UnreadRune() // Not a BOM -- put the rune back
+	}
+	return br
 }

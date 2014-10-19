@@ -11,8 +11,41 @@ jQuery(function ($) {
 			partOf: partOf,
 			translation: translation
 		}, function () {
-			input.closest("tr").removeClass("untranslated");
+			input.closest("tr.entry").removeClass("untranslated");
+			$("#saved-notice").stop(true).show().fadeTo(0, 1.0).fadeOut(2500);
 		});
+	});
+
+	$("body.translate a.vote").click(function () {
+		var a = $(this);
+		var up = a.is('.vote-up');
+		var active = a.is('.active');
+
+		var original = a.closest('tr.entry').find('input.entry-original').first().val();
+		var partOf = a.closest('tr.entry').find('input.entry-partof').first().val();
+		var translation = a.closest('.other-translation').find('label.part').first().text();
+
+		$.get('/api/vote', {
+			language: $("#current-language").val(),
+			original: original,
+			partOf: partOf,
+			translation: translation,
+			up: (up && !active),
+			down: (!up && !active)
+		});
+
+		if (up) {
+			a.closest("td").find("a.vote-up").removeClass('active btn-success');
+		}
+
+		var inverse = a.closest('.btn-group').find('a.vote-'+(up ? 'down' : 'up'));
+		inverse.removeClass('active btn-success btn-danger');
+		
+		if (active) {
+			a.removeClass('active btn-success btn-danger');
+		} else {
+			a.addClass('active btn-'+(up ? 'success' : 'danger'));
+		}
 	});
 
 	var pageOptions = $("form.page-options");
@@ -32,6 +65,6 @@ jQuery(function ($) {
 	});
 
 	$("a.reveal-my-translation").click(function () {
-		$(this).closest("tr").addClass("my-translation").find("p.my-translation input").first().focus();
+		$(this).closest("tr").addClass("with-translation").find("p.my-translation input").first().focus();
 	});
 });
